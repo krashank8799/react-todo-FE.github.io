@@ -53,7 +53,7 @@ export default function LoginPage(props) {
     console.log(details);
 
     let request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:8080/savedetails");
+    request.open("POST", "https://react-todo-be.onrender.com/savedetails");
     request.setRequestHeader("Content-type", "application/json");
     request.send(
       JSON.stringify({
@@ -91,7 +91,7 @@ export default function LoginPage(props) {
 
   function OtpSubmit(otp) {
     let request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:8080/checkotp");
+    request.open("POST", "https://react-todo-be.onrender.com/checkotp");
     request.setRequestHeader("Content-type", "application/json");
     request.send(
       JSON.stringify({

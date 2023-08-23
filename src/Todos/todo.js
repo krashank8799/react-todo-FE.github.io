@@ -7,16 +7,18 @@ import TodoList from "../Components/Lists/TodoList";
 import DeleteIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
 import style from "./todo.module.css";
+import LoadingIcon from "@mui/material/CircularProgress";
 
 export default function Todo(props) {
   const [todos, setTodos] = useState([]);
   const [ipValue, setipValue] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const loggedInUserName = localStorage.getItem("name");
 
   useEffect(function () {
     var request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:8080");
+    request.open("POST", "https://react-todo-be.onrender.com");
     request.setRequestHeader("Content-type", "application/json");
     request.send(JSON.stringify({ username: loggedInUserName }));
     request.addEventListener("load", function () {
@@ -34,6 +36,7 @@ export default function Todo(props) {
       // }
 
       setTodos([...oldTodos]);
+      setIsLoading(false);
     });
 
     /*fetch("http://localhost:8080")
@@ -80,7 +83,7 @@ export default function Todo(props) {
 
   function saveTodoInServer(ipValue) {
     let request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:8080/savetodo");
+    request.open("POST", "https://react-todo-be.onrender.com/savetodo");
     request.setRequestHeader("Content-type", "application/json");
     request.send(
       JSON.stringify({
@@ -115,7 +118,7 @@ export default function Todo(props) {
       console.log(todos);
 
       let request = new XMLHttpRequest();
-      request.open("POST", "http://localhost:8080/deletetodo");
+      request.open("POST", "https://react-todo-be.onrender.com/deletetodo");
       request.setRequestHeader("Content-type", "application/json");
       request.send(JSON.stringify({ deleteId: index }));
       request.addEventListener("load", function () {
@@ -133,7 +136,7 @@ export default function Todo(props) {
       console.log(todos);
 
       let request = new XMLHttpRequest();
-      request.open("post", "http://localhost:8080/edittodo");
+      request.open("post", "https://react-todo-be.onrender.com/edittodo");
       request.setRequestHeader("Content-type", "application/json");
       request.send(JSON.stringify({ editId: index, editTodo: editedTask }));
 
@@ -153,7 +156,9 @@ export default function Todo(props) {
       /><Button onClick={saveTodos} variant="filled">Save</Button>
       <ul>
         
-        {todos.map(function (data, index) {
+        {
+        isLoading ? <LoadingIcon/> : 
+        todos.map(function (data, index) {
           return (
             <div className = {style.todo_cont}>
               <TodoList index={index} list={data} /> 
