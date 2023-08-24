@@ -16,7 +16,7 @@ export default function OtpCard(props) {
         type={"number"}
         iref={props.otpRef}
       />{" "}
-      <Button onClick={props.onOtpSubmit} variant="filled">
+      <Button onClick={props.onOtpSubmit} variant="filled" disabled = {props.isButtonDisabled}>
         {" "}
         {props.isLoading ? (
           <LoadingIcon style={{ width: 20, height: 20 }}/>

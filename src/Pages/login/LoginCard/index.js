@@ -16,6 +16,7 @@ export default function LoginCard(props) {
     onSubmit,
     isLoading,
     loginRef,
+    isButtonDisabled,
   } = props;
 
   return (
@@ -40,7 +41,8 @@ export default function LoginCard(props) {
         onChange={onNumberChange}
         type={"number"}
       />{" "}
-      <Button onClick={onSubmit} variant="outlined">
+      <Button onClick={onSubmit} variant="outlined" disabled = {isButtonDisabled}
+>
         {" "}
         {isLoading ? (
           <LoadingIcon />

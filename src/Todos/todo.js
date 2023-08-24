@@ -115,16 +115,15 @@ export default function Todo(props) {
 
   function deleteTodo(index) {
     return function () {
-      console.log(todos, index);
       todos.splice(index, 1);
       setTodos([...todos]);
-      console.log(todos);
 
       let request = new XMLHttpRequest();
       request.open("POST", "https://react-todo-be.onrender.com/deletetodo");
       request.setRequestHeader("Content-type", "application/json");
       request.send(JSON.stringify({ deleteId: index }));
-      request.addEventListener("load", function () {
+      request.addEventListener("load", function (e) {
+        console.log(e)
         console.log("deleted");
       });
     };

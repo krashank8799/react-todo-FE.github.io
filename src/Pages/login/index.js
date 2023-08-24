@@ -45,6 +45,16 @@ export default function LoginPage(props) {
     console.log(userName);
   }
 
+  let isButtonDisabled = false; 
+
+  if (mobileNumber === '' || userEmail === '' || userName === '') {
+    isButtonDisabled = true;
+  }
+
+  if (otp === '' && (mobileNumber !== '' && userEmail !== '' && userName !== '')) {
+    isButtonDisabled = false;
+  } 
+
   function OtpRequest(userName, userEmail) {
     let details = {
       userName: userName,
@@ -141,6 +151,7 @@ export default function LoginPage(props) {
           value={otp}
           onChange={onOtpChange}
           otpRef={Ref}
+          isButtonDisabled = {isButtonDisabled}
         />
       ) : (
         <LoginCard
@@ -153,6 +164,7 @@ export default function LoginPage(props) {
           onSubmit={onSubmit}
           isLoading={isLoading}
           loginRef={Ref}
+          isButtonDisabled = {isButtonDisabled}
         />
       )}{" "}
     </div>
