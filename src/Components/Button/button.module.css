@@ -5,6 +5,15 @@
     flex-direction: row;
 }
 
+  .disable_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    opacity: 0.6; /* Adjust the opacity level as needed */
+    cursor: not-allowed;
+  }
+
 .button>* {
     margin: 0px 2px;
 }

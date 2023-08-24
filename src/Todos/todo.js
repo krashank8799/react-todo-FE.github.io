@@ -65,6 +65,9 @@ export default function Todo(props) {
     setipValue(inputValue);
   }
 
+  const isButtonDisabled = ipValue === '';
+
+
   async function saveTodos() {
     /*let newTodos = todos.map(function(todo) {
             return todo;
@@ -153,7 +156,7 @@ export default function Todo(props) {
         value={ipValue}
         placeholder="Add Your Task"
         onChange={OnInputChange}
-      /><Button onClick={saveTodos} variant="filled">Save</Button>
+      /><Button onClick={saveTodos} variant="filled" disabled={isButtonDisabled} >Save</Button>
       <ul>
         
         {
